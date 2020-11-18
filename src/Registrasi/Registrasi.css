@@ -1,5 +1,5 @@
 .headtitle{
-    position: relative;
+     position: relative;
 width: 300px;
 height: 147px;
 margin-top: 20px;
@@ -71,10 +71,10 @@ button.btn-submit{
     
     text-transform: uppercase;
     font-weight: bold;
-    margin: 20px;
-    margin-bottom: 0px;
+    margin:20px 20px 0px 20px;
+    
     cursor: pointer;
-    width: 423px;
+    width: 395px;
 height: 60px;
 }
 button.btn-submit:hover{
@@ -89,6 +89,5 @@ button.btn-submit:hover{
 font-style: normal;
 font-weight: normal;
 font-size: 15px;
-
 
 }
