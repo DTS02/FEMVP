@@ -6,7 +6,7 @@ import {
     Link,
     BrowserRouter,
   } from "react-router-dom";
-import { Button, Form, FormGroup, Label } from "react-bootstrap";
+import { Button, Form, FormGroup, Label ,  Input} from "reactstrap";
 import { PostDataLogin } from "../Registrasi/PostData";
 import LP from '../LandingPage/LP';
 
@@ -61,7 +61,7 @@ class Login extends Component {
         <FormGroup>
           <label>Email</label>
           <div></div>
-          <input
+          <Input
             type="email"
             placeholder="Input Email"
             onChange={this.onChange}
@@ -71,7 +71,7 @@ class Login extends Component {
         <FormGroup>
           <label>Password</label>
           <div></div>
-          <input
+          <Input
             type="password"
             placeholder="Input Password"
             onChange={this.onChange}
