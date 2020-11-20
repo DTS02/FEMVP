@@ -1,5 +1,9 @@
-import React, { Component } from "react";
+import React, { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import "./Login.css";
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
+import { login } from "../userActions";
 import {
     BrowserRouter as Router,
     Route,
@@ -12,48 +16,48 @@ import { PostDataLogin } from "../Registrasi/PostData";
 import LP from '../LandingPage/LP';
 import App from '../App'
 import Home from "../Home/Home";
-class Login extends Component {
-  constructor() {
-    super();
 
-    this.state = {
-      email: "",
+const MySwal = withReactContent(Swal);
 
-      password: "",
-      redirectToReferrer: false,
-    };
+const Login = ({ history }) => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
-    this.login = this.login.bind(this);
-    this.onChange = this.onChange.bind(this);
-  }
+  const dispatch = useDispatch();
 
-  login() {
-    if (this.state.email && this.state.password) {
-      PostDataLogin("login", this.state).then((result) => {
-        let responseJson = result;
-        if (responseJson.userData) {
-          sessionStorage.setItem("userData", JSON.stringify(responseJson));
-          this.setState({ redirectToReferrer: true });
+  const userLogin = useSelector((state) => state.userLogin);
+  const { error, token } = userLogin;
+
+  useEffect(() => {
+    if (token) {
+      history.push("/LP");
+    }
+  }, [history, token]);
+
+  useEffect(() => {
+    if (error && error !== undefined) {
+      MySwal.fire({
+        icon: "error",
+        title: error,
+      }).then((result) => {
+        if (result.isConfirmed) {
+          setEmail("");
+          setPassword("");
         }
       });
     }
-  }
+  }, [error]);
 
-  onChange(e) {
-    this.setState({ [e.target.name]: e.target.value });
-  }
+  const submitHandler = (e) => {
+    e.preventDefault();
+    dispatch(login(email, password));
+  };
 
-  render() {
-   
-        if (this.state.redirectToReferrer || sessionStorage.getItem("userData")) {
-          return <Redirect to exact={App} />;
-        }
-        
 
     return (
       <Router>
      
-      <form className="login">
+      <Form onSubmit={submitHandler} className="login">
         <h2>
           <span className="font-weight-bold">Selamat Datang Kamu,</span>
         </h2>
@@ -65,9 +69,12 @@ class Login extends Component {
           <label>Email</label>
           <div></div>
           <Input
-            type="email"
-            placeholder="Input Email"
-            onChange={this.onChange}
+             value={email}
+             required
+             onChange={(e) => setEmail(e.target.value)}
+             type="email"
+             name="name"
+             placeholder="Email"
           />
         </FormGroup>
 
@@ -75,9 +82,12 @@ class Login extends Component {
           <label>Password</label>
           <div></div>
           <Input
-            type="password"
-            placeholder="Input Password"
-            onChange={this.onChange}
+            value={password}
+            required
+            onChange={(e) => setPassword(e.target.value)}
+            type="password "
+            name="password"
+            placeholder="Password"
           />
         </FormGroup>
         <div className="text-right">
@@ -99,10 +109,10 @@ class Login extends Component {
             Daftar
           </button>
         </div>
-        </form>
+        </Form>
         </Router>
     );
   }
-}
+
 
 export default Login;

@@ -92,7 +92,7 @@ const Registrasi = ({ setLogginActive }) => {
           </p>
           <div className="nama-satu">
             <input
-              value={name}
+              value={firstName}
               required
               onChange={(e) => setFirstName(e.target.value)}
               type="text"
@@ -101,7 +101,7 @@ const Registrasi = ({ setLogginActive }) => {
             />
 
             <input
-              value={name}
+              value={lastName}
               required
               onChange={(e) => setLastName(e.target.value)}
               type="text"
@@ -111,7 +111,7 @@ const Registrasi = ({ setLogginActive }) => {
           </div>
           <div className="nama-dua">
             <input
-              value={name}
+              value={userName}
               required
               onChange={(e) => setUserName(e.target.value)}
               type="text"
@@ -119,7 +119,7 @@ const Registrasi = ({ setLogginActive }) => {
               placeholder="Nama Panggilan Kamu"
             />
             <input
-              value={name}
+              value={email}
               required
               onChange={(e) => setEmail(e.target.value)}
               type="email"
@@ -127,7 +127,7 @@ const Registrasi = ({ setLogginActive }) => {
               placeholder="Email"
             ></input>
             <input
-              value={name}
+              value={password}
               required
               onChange={(e) => setPassword(e.target.value)}
               type="password"
@@ -135,7 +135,7 @@ const Registrasi = ({ setLogginActive }) => {
               placeholder="Password"
             ></input>
             <input
-              value={name}
+              value={passwordConfirm}
               required
               onChange={(e) => setPasswordConfirm(e.target.value)}
               type="password"
@@ -149,7 +149,7 @@ const Registrasi = ({ setLogginActive }) => {
 
               <Dropdown.Menu>
                 <Dropdown.Item
-                  value={name}
+                  value={role}
                   required
                   onChange={(e) => setRole(e.target.value)}
                   type="submit"
@@ -158,7 +158,7 @@ const Registrasi = ({ setLogginActive }) => {
                   Pengajar
                 </Dropdown.Item>
                 <Dropdown.Item
-                  value={name}
+                  value={role}
                   required
                   onChange={(e) => setRole(e.target.value)}
                   type="submit"
