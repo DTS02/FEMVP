@@ -38,7 +38,7 @@ export const login = (email, password) => async (dispatch) => {
   }
 };
 
-export const register = (email, password) => async (dispatch) => {
+export const register = (firstName,lastName, userName,email, password, passwordConfirm, role) => async (dispatch) => {
   try {
     dispatch({
       type: USER_REGISTER_REQUEST,

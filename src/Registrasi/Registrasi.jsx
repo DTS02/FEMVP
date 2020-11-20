@@ -1,26 +1,23 @@
 import React, { useState, useEffect, Fragment } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import {
   BrowserRouter as Router,
-  Route,
   Link,
-  BrowserRouter,
+ 
 } from "react-router-dom";
 import "./Registrasi.css";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
 import { register } from "../userActions";
 import { USER_REGISTER_STATUS_RESET } from "../userConstants";
-
+import Form from 'react-bootstrap/Form'
 import { Dropdown } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { PostData } from "./PostData";
-import { Redirect } from "react-router-dom";
-import LP from "../LandingPage/LP";
-import Login from "../Login/Login";
+
 const MySwal = withReactContent(Swal);
 const Registrasi = ({ setLogginActive }) => {
-  const [firstName, setfirstName] = useState("");
-  const [lastName, setlastName] = useState("");
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
   const [userName, setUserName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -84,12 +81,13 @@ const Registrasi = ({ setLogginActive }) => {
   return (
     <Router>
       <Fragment>
-        <Form className="form-add-post" onSubmit={submitHandler}>
+        <Form className="form-add-post">
           <p className="headtitle">
             Yuk daftar
             <br /> biar bisa belajar
             <br /> bareng kita
           </p>
+          <Form onSubmit={submitHandler}>
           <div className="nama-satu">
             <input
               value={firstName}
@@ -175,7 +173,8 @@ const Registrasi = ({ setLogginActive }) => {
           <p className="kelogin">
             Kamu sudah mendaftar? Yuk langsung <Link to="/Login">masuk!</Link>
           </p>
-        </Form>
+          </Form>
+          </Form>
       </Fragment>
     </Router>
   );

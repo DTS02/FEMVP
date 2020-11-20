@@ -5,17 +5,10 @@ import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
 import { login } from "../userActions";
 import {
-    BrowserRouter as Router,
-    Route,
-    Link,
-  BrowserRouter,
-    Redirect,
-  } from "react-router-dom";
-import { Button, Form, FormGroup, Label ,  Input} from "reactstrap";
-import { PostDataLogin } from "../Registrasi/PostData";
-import LP from '../LandingPage/LP';
-import App from '../App'
-import Home from "../Home/Home";
+  BrowserRouter as Router,
+  
+} from "react-router-dom";
+import {  Form, FormGroup, Input } from "reactstrap";
 
 const MySwal = withReactContent(Swal);
 
@@ -53,66 +46,60 @@ const Login = ({ history }) => {
     dispatch(login(email, password));
   };
 
-
-    return (
-      <Router>
-     
-      <Form onSubmit={submitHandler} className="login">
+  return (
+    <Router>
+      <Form className="login">
         <h2>
           <span className="font-weight-bold">Selamat Datang Kamu,</span>
         </h2>
         <h2>
           <strong>Yuk Masuk!</strong>
         </h2>
+        <Form onSubmit={submitHandler}>
+          <FormGroup>
+            <label>Email</label>
+            <div></div>
+            <Input
+              value={email}
+              required
+              onChange={(e) => setEmail(e.target.value)}
+              type="email"
+              name="name"
+              placeholder="Email"
+            />
+          </FormGroup>
 
-        <FormGroup>
-          <label>Email</label>
-          <div></div>
-          <Input
-             value={email}
-             required
-             onChange={(e) => setEmail(e.target.value)}
-             type="email"
-             name="name"
-             placeholder="Email"
-          />
-        </FormGroup>
+          <FormGroup>
+            <label>Password</label>
+            <div></div>
+            <Input
+              value={password}
+              required
+              onChange={(e) => setPassword(e.target.value)}
+              type="password "
+              name="password"
+              placeholder="Password"
+            />
+          </FormGroup>
+          <div className="text-right">
+            <a href="/">Lupa Password?</a>
+          </div>
 
-        <FormGroup>
-          <label>Password</label>
-          <div></div>
-          <Input
-            value={password}
-            required
-            onChange={(e) => setPassword(e.target.value)}
-            type="password "
-            name="password"
-            placeholder="Password"
-          />
-        </FormGroup>
-        <div className="text-right">
-          <a href="/">Lupa Password?</a>
-        </div>
-        
-        <div className="text-center">
-          <button type="submit"
-            className="btn1"
-              onClick={this.login} >    
-            <Link to="/Home">Masuk</Link>
-            <Route path exact="/Home" component={LP}></Route>
-            
-          </button>
-     
-          <p></p>
-          <p>Kamu Belum Gabung?</p>
-          <button type="button" className="btn2">
-            Daftar
-          </button>
-        </div>
+          <div className="text-center">
+            <button type="submit" className="btn1" variant="default ">
+              Masuk
+            </button>
+
+            <p></p>
+            <p>Kamu Belum Gabung?</p>
+            <button type="button" className="btn2">
+              Daftar
+            </button>
+          </div>
         </Form>
-        </Router>
-    );
-  }
-
+      </Form>
+    </Router>
+  );
+};
 
 export default Login;
