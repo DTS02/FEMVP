@@ -4,12 +4,14 @@ import {
     BrowserRouter as Router,
     Route,
     Link,
-    BrowserRouter,
+  BrowserRouter,
+    Redirect,
   } from "react-router-dom";
 import { Button, Form, FormGroup, Label ,  Input} from "reactstrap";
 import { PostDataLogin } from "../Registrasi/PostData";
 import LP from '../LandingPage/LP';
-
+import App from '../App'
+import Home from "../Home/Home";
 class Login extends Component {
   constructor() {
     super();
@@ -44,12 +46,13 @@ class Login extends Component {
   render() {
    
         if (this.state.redirectToReferrer || sessionStorage.getItem("userData")) {
-          return <Link to="/LP" />;
+          return <Redirect to exact={App} />;
         }
-        <Route path="/LP" component={LP} />
-    
+        
 
     return (
+      <Router>
+     
       <form className="login">
         <h2>
           <span className="font-weight-bold">Selamat Datang Kamu,</span>
@@ -78,19 +81,26 @@ class Login extends Component {
           />
         </FormGroup>
         <div className="text-right">
-          <a href="">Lupa Password?</a>
+          <a href="/">Lupa Password?</a>
         </div>
+        
         <div className="text-center">
-          <button type="button" className="btn1" onClick={this.login}>
-            Masuk
+          <button type="submit"
+            className="btn1"
+              onClick={this.login} >    
+            <Link to="/Home">Masuk</Link>
+            <Route path exact="/Home" component={LP}></Route>
+            
           </button>
+     
           <p></p>
           <p>Kamu Belum Gabung?</p>
           <button type="button" className="btn2">
             Daftar
           </button>
         </div>
-      </form>
+        </form>
+        </Router>
     );
   }
 }

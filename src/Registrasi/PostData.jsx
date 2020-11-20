@@ -1,5 +1,5 @@
 export function PostData(type, userData) {
-    let BaseURL = 'http://677674ab417e.ngrok.io/users';
+    let BaseURL = 'http://677674ab417e.ngrok.io/users/signup';
  
 
     return new Promise((resolve, reject) =>{
